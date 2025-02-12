@@ -1,5 +1,5 @@
 <?php
-require_once(__DIR__ . '/includes/db.php');
+require('../models/database.php');
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -59,17 +59,23 @@ require_once(__DIR__ . '/includes/db.php');
     <header>
         <nav>
             <ul>
+                <?php
+        
+        if (isset($_SESSION['is_logged_in']) && $_SESSION['is_logged_in']){    ?>
                 <li><a href="index.php">Home</a></li>
                 <li><a href="movies.php">Movies</a></li>
                 <li><a href="tv_shows.php">TV Shows</a></li>
-                <li><a href="signup.php">Sign Up</a></li>
+                <?php } else { ?>
                 <li><a href="login.php">Login</a></li>
+                <li><a href="signup.php">Sign Up</a></li>
+        &nbsp;
+         <?php  }  ?>
             </ul>
         </nav>
     </header>
 
     <main>
-        <h1>Welcome to Notflix</h1>
+        <h1>Welcome to Notflix!</h1>
     </main>
 
     <footer>
@@ -77,3 +83,4 @@ require_once(__DIR__ . '/includes/db.php');
     </footer>
 </body>
 </html>
+

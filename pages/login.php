@@ -1,5 +1,5 @@
 <?php
-require_once(__DIR__ . '/includes/db.php');
+require('../models/database.php');
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -129,17 +129,26 @@ require_once(__DIR__ . '/includes/db.php');
     <header>
         <nav>
             <ul>
+                <?php
+        
+        if (isset($_SESSION['is_logged_in']) && $_SESSION['is_logged_in']){    ?>
                 <li><a href="index.php">Home</a></li>
                 <li><a href="movies.php">Movies</a></li>
                 <li><a href="tv_shows.php">TV Shows</a></li>
+                <?php } else { ?>
+                <li><a href="login.php">Login</a></li>
+                <li><a href="signup.php">Sign Up</a></li>
+        &nbsp;
+         <?php  }  ?>
             </ul>
         </nav>
         <div></div>
     </header>
 
     <main>
+        
         <div class="login-container">
-            <h2>Sign In</h2>
+            <h2>Login</h2>
             <form action="process_login.php" method="post">
                 <div class="form-group">
                     <input type="text" id="email" name="email" placeholder="Email or mobile number" required>
@@ -147,7 +156,7 @@ require_once(__DIR__ . '/includes/db.php');
                 <div class="form-group">
                     <input type="password" id="password" name="password" placeholder="Password" required>
                 </div>
-                <button type="submit" class="login-button">Sign In</button>
+                <button type="submit" class="login-button">Login</button>
                 <div class="remember-me">
                     <input type="checkbox" id="remember" name="remember">
                     <label for="remember">Remember me</label>
