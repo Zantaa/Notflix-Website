@@ -162,7 +162,7 @@ require('../models/database.php');
                     <input type="password" id="password" name="password" placeholder="Password" required>
                 </div>
                  <div class="form-group">
-                    <input type="text" id="name" name="name" placeholder="Name" required>
+                    <input type="text" id="username" name="username" placeholder="Username" required>
                 </div>
                 <button type="submit" class="signup-button">Sign Up</button>
             </form>

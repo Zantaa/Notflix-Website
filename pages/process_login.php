@@ -32,10 +32,8 @@ try {
 }
     
     
-    include 'movies.php';
+    include 'pages/login.php';
     
-} catch (Exception $e) {
-            $error_message =$e->getMessage();
-            include 'views/errors.php';
-        }
-
+} catch (PDOException $e) {
+        die('Error: ' . $e->getMessage());
+    }

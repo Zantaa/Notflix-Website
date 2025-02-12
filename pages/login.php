@@ -151,7 +151,7 @@ require('../models/database.php');
             <h2>Login</h2>
             <form action="process_login.php" method="post">
                 <div class="form-group">
-                    <input type="text" id="email" name="email" placeholder="Email or mobile number" required>
+                    <input type="text" id="username" name="username" placeholder="Username" required>
                 </div>
                 <div class="form-group">
                     <input type="password" id="password" name="password" placeholder="Password" required>
@@ -175,3 +175,4 @@ require('../models/database.php');
     </footer>
 </body>
 </html>
+

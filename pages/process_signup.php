@@ -2,11 +2,11 @@
 require('../models/database.php');
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    $name = trim($_POST['name']);
+    $username = trim($_POST['username']);
     $email = trim($_POST['email']);
     $password = trim($_POST['password']);
 
-    if (empty($name) || empty($email) || empty($password)) {
+    if (empty($username) || empty($email) || empty($password)) {
         die('All fields are required.');
     }
 
@@ -15,7 +15,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     }
 
     try {
-        $stmt = $pdo->prepare("SELECT COUNT(*) FROM users WHERE email = :email");
+        $stmt = $database->prepare("SELECT COUNT(*) FROM users WHERE email = :email");
         $stmt->execute(['email' => $email]);
         $count = $stmt->fetchColumn();
 
@@ -25,9 +25,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
         $hashedPassword = password_hash($password, PASSWORD_BCRYPT);
 
-        $stmt = $pdo->prepare("INSERT INTO users (name, email, password) VALUES (:name, :email, :password)");
+        $stmt = $database->prepare("INSERT INTO users (username, email, password) VALUES (:username, :email, :password)");
         $stmt->execute([
-            'name' => $name,
+            'username' => $username,
             'email' => $email,
             'password' => $hashedPassword
         ]);
