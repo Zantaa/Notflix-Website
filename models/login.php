@@ -1,31 +1,14 @@
 <?php
-
-function login($username, $password){
-    global  $database;
-    $query = 'SELECT username, password_hash FROM user '
-            . 'where username = :username';
-            
-            
-            $statement = $database->prepare($query);
-            
-            
-            $statement->bindValue (":username", $username);
-            
-            
-            $statement->execute();
-            
-            
-            $user = $statement->fetch();
-            
-            $statement->closeCursor();
-            
-            if ($user == null){
-                return false;
-            }
-            
-            $password_hash = $user['password_hash'];
-            
-            return password_verify($password, $password_hash);        
+function login($username, $password) {
+    // Use the global $pdo object established in database.php
+    global $pdo;
+    
+    $stmt = $pdo->prepare("SELECT * FROM users WHERE username = :username");
+    $stmt->execute(['username' => $username]);
+    $user = $stmt->fetch(PDO::FETCH_ASSOC);
+    
+    if ($user && password_verify($password, $user['password'])) {
+        return true;
+    }
+    return false;
 }
-
-

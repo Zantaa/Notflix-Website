@@ -1,39 +1,28 @@
 <?php
-
 session_start();
+require('../models/database.php');
+require('../models/login.php');
 
-try {
-    require('../models/database.php');
-    require('../models/login.php');
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    $username = htmlspecialchars($_POST['username'] ?? '');
+    $password = htmlspecialchars($_POST['password'] ?? '');
     
-    $message = "";
-    
-    $action = htmlspecialchars(filter_input(INPUT_GET, "action"));
-
-    $username = htmlspecialchars(filter_input(INPUT_POST, "username")); 
-    $password = htmlspecialchars(filter_input(INPUT_POST, "password")); 
-    $password_hash = password_hash($password, PASSWORD_DEFAULT);
-    
-    
-    
-    if( $action == "logout" ){
-        $_SESSION = array();
-        session_destroy();
+    if ($username !== '' && $password !== '') {
+        if (login($username, $password)) {
+            $_SESSION['is_logged_in'] = true;
+            header("Location: index.php");
+            exit;
+        } else {
+            $_SESSION['error'] = "Login failed!";
+            header("Location: login.php");
+            exit;
+        }
+    } else {
+        $_SESSION['error'] = "Please provide username and password.";
+        header("Location: login.php");
+        exit;
     }
-    
-    
-    if ($username != "" && $password != "") {
-        if (login( $username, $password)){
-        $_SESSION['is_logged_in'] = true;
-        
-    }else {
-        $message = "Login failed!";
-    }
+} else {
+    header("Location: login.php");
+    exit;
 }
-    
-    
-    include 'pages/login.php';
-    
-} catch (PDOException $e) {
-        die('Error: ' . $e->getMessage());
-    }

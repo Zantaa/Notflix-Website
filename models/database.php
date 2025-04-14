@@ -1,10 +1,12 @@
 <?php
+$host = "127.0.0.1";
+$dbname = "notflix";
+$username = "root";
+$pass = "";
 
-$data_source_name = "mysql:host=localhost;dbname=notflix";
-        $username = "root";
-        $pass = "";
-        
-
-    $database = new PDO($data_source_name, $username);
-    
-
+try {
+    $pdo = new PDO("mysql:host=$host;dbname=$dbname;charset=utf8mb4", $username, $pass);
+    $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+} catch (PDOException $e) {
+    die("Connection failed: " . $e->getMessage());
+}
