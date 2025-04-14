@@ -1,6 +1,6 @@
 <?php
 session_start();
-require('../models/database.php'); // Keep this if you need your DB connection for login-related tasks
+require('../models/database.php'); 
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -36,7 +36,7 @@ require('../models/database.php'); // Keep this if you need your DB connection f
   </header>
   <main>
     <h1>Welcome to Notflix!</h1>
-    <p>Your streaming site built manually—browse our selections below!</p>
+    <p>Your movie database in one place! </p>
   </main>
   <footer>
     <p>&copy; 2025 Notflix. All rights reserved.</p>

@@ -8,21 +8,68 @@ session_start();
   <title>Notflix - Movies</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <style>
-    body { font-family: Arial, sans-serif; background-color: #141414; color: #fff; margin: 0; }
-    header { background-color: #e50914; padding: 1rem; }
-    nav ul { list-style: none; padding: 0; margin: 0; }
-    nav ul li { display: inline; margin-right: 20px; }
-    nav ul li a { color: #fff; text-decoration: none; }
-    main { padding: 20px; }
-    .movie-container { display: flex; flex-wrap: wrap; justify-content: center; }
-    .movie-link { text-decoration: none; color: inherit; }
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #141414;
+      color: #fff;
+      margin: 0;
+    }
+    header {
+      background-color: #e50914;
+      padding: 1rem;
+    }
+    nav ul {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
+    nav ul li {
+      display: inline;
+      margin-right: 20px;
+    }
+    nav ul li a {
+      color: #fff;
+      text-decoration: none;
+    }
+    main {
+      padding: 20px;
+    }
+    .movie-container {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+    .movie-link {
+      text-decoration: none;
+      color: inherit;
+      margin: 10px;
+    }
     .movie {
-      background-color: #222; border-radius: 5px; margin: 10px; padding: 10px; width: 300px; text-align: center;
+      background-color: #222;
+      border-radius: 5px;
+      padding: 10px;
+      width: 300px;
+      text-align: center;
       transition: transform 0.3s, box-shadow 0.3s;
     }
-    .movie:hover { transform: scale(1.05); box-shadow: 0 4px 8px rgba(0,0,0,0.5); cursor: pointer; }
-    .movie img { width: 100%; border-radius: 5px; }
-    footer { background-color: #141414; text-align: center; padding: 1rem; border-top: 1px solid #222; position: fixed; bottom: 0; width: 100%; }
+    .movie:hover {
+      transform: scale(1.05);
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
+      cursor: pointer;
+    }
+    .movie img {
+      width: 100%;
+      border-radius: 5px;
+    }
+    footer {
+      background-color: #141414;
+      text-align: center;
+      padding: 1rem;
+      border-top: 1px solid #222;
+      position: fixed;
+      bottom: 0;
+      width: 100%;
+    }
   </style>
 </head>
 <body>
@@ -76,9 +123,9 @@ session_start();
         echo "<div class='movie'>";
         echo "<img src='" . htmlspecialchars($movie['image']) . "' alt='" . htmlspecialchars($movie['title']) . " poster'>";
         echo "<h2>" . htmlspecialchars($movie['title']) . "</h2>";
+        echo "<p>" . htmlspecialchars($movie['description']) . "</p>";
         echo "</div>";
         echo "</a>";
-        echo "<p>" . htmlspecialchars($movie['description']) . "</p>";
       }
       ?>
     </div>
