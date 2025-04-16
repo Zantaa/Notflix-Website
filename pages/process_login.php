@@ -10,6 +10,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     if ($username !== '' && $password !== '') {
         if (login($username, $password)) {
             $_SESSION['is_logged_in'] = true;
+            $_SESSION['username']      = $username;    // ← this line!
             header("Location: index.php");
             exit;
         } else {

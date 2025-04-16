@@ -38,6 +38,7 @@ require('../models/database.php');
                     <li><a href="movies.php">Movies</a></li>
                     <li><a href="tv_shows.php">TV Shows</a></li>
                     <li><a href="logout.php">Logout</a></li>
+                    <li><a href="profile.php">Profile</a></li>
                 <?php } else { ?>
                     <li><a href="login.php">Login</a></li>
                     <li><a href="signup.php">Sign Up</a></li>
